@@ -39,6 +39,13 @@ async def poll_attendance(context: ContextTypes.DEFAULT_TYPE):
     reply_markup = build_keyboard()
     await context.bot.send_message(GROUPCHAT_ID, attendance_string, reply_markup=reply_markup)
 
+async def manual_poll_attendance(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    date = None
+    if context.args and len(context.args) == 3 and len(context.args[0]) <= 2 and len(context.args[1]) <= 2 and len(context.args[2]) == 4:
+        date = datetime.datetime(int(context.args[2]), int(context.args[1]), int(context.args[0]))
+    attendance_string = write_attendance(nums=[0 for i in range(len(NLIST.keys()))], date=date, nc_nums=[0 for i in range(len(NLIST.keys()))])
+    reply_markup = build_keyboard()
+    await context.bot.send_message(GROUPCHAT_ID, attendance_string, reply_markup=reply_markup)
 
 def build_keyboard():
     keyboard = [
@@ -338,5 +345,6 @@ if __name__ == '__main__':
     application.add_handler(CommandHandler('unset', unset_attendance))
     application.add_handler(CommandHandler('showsched', show_jobs))
     application.add_handler(CommandHandler('setgroup', set_group_chat))
+    application.add_handler(CommandHandler('manualPoll', manual_poll_attendance))
     application.add_handler(CallbackQueryHandler(attendance_button))
     application.run_polling()
