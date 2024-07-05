@@ -345,6 +345,6 @@ if __name__ == '__main__':
     application.add_handler(CommandHandler('unset', unset_attendance))
     application.add_handler(CommandHandler('showsched', show_jobs))
     application.add_handler(CommandHandler('setgroup', set_group_chat))
-    application.add_handler(CommandHandler('manualPoll', manual_poll_attendance))
+    application.add_handler(CommandHandler('poll', manual_poll_attendance))
     application.add_handler(CallbackQueryHandler(attendance_button))
     application.run_polling()
