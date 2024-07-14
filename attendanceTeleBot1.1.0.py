@@ -65,11 +65,12 @@ def build_keyboard():
             InlineKeyboardButton("9", callback_data=9),
         ],
         [
-            InlineKeyboardButton("Clear", callback_data='clear')
+            InlineKeyboardButton("+NC", callback_data='add_nc'),
+            InlineKeyboardButton("0", callback_data=0),
+            InlineKeyboardButton("-NC", callback_data='sub_nc')
         ],
         [
-            InlineKeyboardButton("+NC", callback_data='add_nc'),
-            InlineKeyboardButton("-NC", callback_data='sub_nc')
+            InlineKeyboardButton("Clear", callback_data='clear')
         ],
     ]
 
